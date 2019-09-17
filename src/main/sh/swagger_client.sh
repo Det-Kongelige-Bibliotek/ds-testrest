@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR=$(dirname $(readlink -f $BASH_SOURCE[0]))
-
+#SCRIPT_DIR=$(dirname $(readlink -f $BASH_SOURCE[0]))
+SCRIPT_DIR="/home/kaah/Code/Repository/ds-testrest/src/main/json/testrest.json"
 
 #Blob to get and compile the swagger codegen
-cd ~/Code/Repository/swagger-codegen
+cd ~/Code/Repository/Digitale_Samlinger/swagger-codegen
 function build(){
-git clone https://github.com/swagger-api/swagger-codegen ~/projects/alma/swagger-codegen
+git clone https://github.com/swagger-api/swagger-codegen ~/Code/Repository/Digitale_Samlinger/swagger-codegen
 git checkout v3.0.8
 mvn clean package
 }
@@ -19,35 +19,35 @@ function generate(){
 
     #Download the swagger spec from Ex Libris (can be json or yaml)
     pushd $SCRIPT_DIR
-    wget -N https://developers.exlibrisgroup.com/wp-content/uploads/alma/openapi/tasklists.json
+    wget -N https://github.com/Det-Kongelige-Bibliotek/ds-testrest/tree/master/src/main/json/testrest.json
     popd
 
-    #Download the associated schemas from Ex libris (can be json or yaml)
-    mkdir -p $SCRIPT_DIR/schemas
-    pushd $SCRIPT_DIR/schemas
-    wget -N -rkl0 -np -nd -A "*.json" https://developers.exlibrisgroup.com/wp-content/uploads/alma/openapi/schemas/
-    popd
-
-
-
-
-
-    #BIG BLOB TO FIX ERRORS IN EX LIBRIS SWAGGER SPEC, IGNORE FOR OTHER CONTEXTS
-
-    #Fix the rest references that generate invalid java objects
-    sed -i 's|\#/rest_|\#/|g' $SCRIPT_DIR/tasklists.json
-    sed -i 's|\#/rest_|\#/|g' $SCRIPT_DIR/schemas/*.json
-
-    #Ensure that datetimes are not parsed as dates
-    in='_time": \{
-        "type": "string",
-        "format": "date",'
-    out='_time": {
-        "type": "string",
-        "format": "date-time",'
-    perl -0777 -i -pe "s/$in/$out/igs" $SCRIPT_DIR/schemas/*.json
-
-    #ERRORS FIXED, CONTINUE ON
+#    #Download the associated schemas from Ex libris (can be json or yaml)
+#    mkdir -p $SCRIPT_DIR/schemas
+#    pushd $SCRIPT_DIR/schemas
+#    wget -N -rkl0 -np -nd -A "*.json" https://developers.exlibrisgroup.com/wp-content/uploads/alma/openapi/schemas/
+#    popd
+#
+#
+#
+#
+#
+#    #BIG BLOB TO FIX ERRORS IN EX LIBRIS SWAGGER SPEC, IGNORE FOR OTHER CONTEXTS
+#
+#    #Fix the rest references that generate invalid java objects
+#    sed -i 's|\#/rest_|\#/|g' $SCRIPT_DIR/tasklists.json
+#    sed -i 's|\#/rest_|\#/|g' $SCRIPT_DIR/schemas/*.json
+#
+#    #Ensure that datetimes are not parsed as dates
+#    in='_time": \{
+#        "type": "string",
+#        "format": "date",'
+#    out='_time": {
+#        "type": "string",
+#        "format": "date-time",'
+#    perl -0777 -i -pe "s/$in/$out/igs" $SCRIPT_DIR/schemas/*.json
+#
+#    #ERRORS FIXED, CONTINUE ON
 
 
 
@@ -59,13 +59,13 @@ function generate(){
     pushd $SCRIPT_DIR
 
     #Where to create the new project
-    dir="$HOME/projects/alma/swagger-client"
+    dir="$HOME/Code/Repository/ds-testrest/src/main/data"
 
-    #Delete if, if it exists
+    #Delete it, if it exists
     rm -rf "$dir"
 
     #Run codegen
-    java -jar ~/projects/alma/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar \
+    java -jar ~/Code/Repository/Digitale_Samlinger/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar \
         generate \
        --input-spec tasklists.json \
        --lang java \
@@ -91,6 +91,31 @@ function generate(){
     # remove-operation-id-prefix = shorter method names, probably unnessesary
     # config = additional config settings that couldn't go on the command line
 
+#    java -jar ~/Code/Repository/Digitale_Samlinger/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar \
+#        generate \
+#       --input-spec tasklists.json \
+#       --lang java \
+#       --output "$dir" \
+#       --group-id dk.kb.alma \
+#       --artifact-id tasklist-client \
+#       --api-package dk.kb.alma.gen.tasklist.api \
+#       --model-package dk.kb.alma.gen.tasklist.model \
+#       --invoker-package dk.kb.alma.gen.tasklist \
+#       --remove-operation-id-prefix true \
+#       --config "$SCRIPT_DIR/configfile.json"
+#
+#    # Cannot comment inline, so they go here
+#    # generate = the command to swagger codegen
+#    # input-spec = the swagger spec to generate client/server for
+#    # lang = the language. Java means java client, jaxrs-jersey means stub webservice. There are a lot of possibilies
+#    # outdir = where to generate the project
+#    # group-id = the maven groupid for the pom.xml
+#    # articact-id = the maven artifact-id for the pom.xml
+#    # api-package = java package for the api classes (the ones defined in the input-spec)
+#    # model-package = java package for model classes (basically the return types defined in the schemas)
+#    # invoker-package = Not clear what this is?
+#    # remove-operation-id-prefix = shorter method names, probably unnessesary
+#    # config = additional config settings that couldn't go on the command line
     popd
 
 
