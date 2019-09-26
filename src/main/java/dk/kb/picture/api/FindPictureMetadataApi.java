@@ -3,36 +3,25 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package com.howtodoinjava.example.employee.api;
+package dk.kb.picture.api;
 
-import com.howtodoinjava.example.employee.model.PictureMetadata;
-import io.swagger.annotations.*;
+import dk.kb.picture.model.PictureMetadata;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
-import javax.validation.constraints.*;
-import java.util.List;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-24T13:09:19.506+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-25T11:58:48.758+02:00")
 
 @Api(value = "findPictureMetadata", description = "the findPictureMetadata API")
 public interface FindPictureMetadataApi {
 
     @ApiOperation(value = "Find metadata by ID", nickname = "getPictureMetadata", notes = "Returns a single picture metadata", response = PictureMetadata.class, tags={ "picture", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "successful operation", response = PictureMetadata.class),
         @ApiResponse(code = 400, message = "Invalid Picture ID supplied"),
         @ApiResponse(code = 404, message = "Picture not found") })
     @RequestMapping(value = "/findPictureMetadata/{pictureId}",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<PictureMetadata> getPictureMetadata(@ApiParam(value = "ID of Picture to return",required=true) @PathVariable("pictureId") Long pictureId);
 

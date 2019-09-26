@@ -1,19 +1,16 @@
-package com.howtodoinjava.example.employee.model;
+package dk.kb.picture.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+
+import java.util.Objects;
 
 /**
  * PictureMetadata
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-24T13:09:19.506+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-25T11:58:48.758+02:00")
 
 public class PictureMetadata   {
   @JsonProperty("id")
@@ -109,7 +106,7 @@ public class PictureMetadata   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PictureMetadata {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");

@@ -1,6 +1,6 @@
-package com.howtodoinjava.example.employee.api;
+package dk.kb.picture.api;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-24T13:09:19.506+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-09-25T11:58:48.758+02:00")
 
 public class ApiException extends Exception{
     private int code;

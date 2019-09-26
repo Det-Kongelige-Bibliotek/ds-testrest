@@ -70,11 +70,11 @@ function generate(){
        --input-spec tasklists.json \
        --lang java \
        --output "$dir" \
-       --group-id dk.kb.alma \
-       --artifact-id tasklist-client \
-       --api-package dk.kb.alma.gen.tasklist.api \
-       --model-package dk.kb.alma.gen.tasklist.model \
-       --invoker-package dk.kb.alma.gen.tasklist \
+       --group-id dk.kb.picture \
+       --artifact-id ds-testrest \
+       --api-package dk.kb.picture.api \
+       --model-package dk.kb.picture.model \
+       --invoker-package dk.kb.picture \
        --remove-operation-id-prefix true \
        --config "$SCRIPT_DIR/configfile.json"
 
