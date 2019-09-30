@@ -1,0 +1,7 @@
+{
+  "apipackage": "dk.kb.picture.api",
+  "modelPackage": "dk.kb.picture.model",
+  "groupId": "dk.kb.picture",
+  "artifactId": "ds-testrest",
+  "artifactVersion": "0.0.1-SNAPSHOT"
+}
