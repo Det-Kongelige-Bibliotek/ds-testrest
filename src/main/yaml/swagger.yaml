@@ -46,11 +46,8 @@ definitions: # Object definition
       id: #Id attribute
         type: integer
         format: int64
-      firstName: #Firstname attribute
+      pictureName: #Picturename attribute
         type: string
-        description: Picture First Name #data type description
-      lastName: #Lastname attribute
-        type: string #Data type
-        description: Picture Last Name #Data type description
+        description: Picture Name #data type description
     xml:
       name: pictureMetadata #xml root element when returning xml
