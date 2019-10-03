@@ -39,6 +39,16 @@ paths:
           description: Invalid Picture ID supplied #Unsuccessful response description
         '404': #Unsuccessful response code
           description: Picture not found #Unsuccessful response description
+  /report:
+    get:
+      summary: Returns the report in the JSON format.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: A JSON file.
+          schema:
+            type: file
 definitions: # Object definition
   PictureMetadata: #Picture Object
     type: object
