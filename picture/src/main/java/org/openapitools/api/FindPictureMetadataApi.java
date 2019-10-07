@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.constraints.*;
 import java.util.Optional;
@@ -46,7 +47,17 @@ public interface FindPictureMetadataApi {
             }
         });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
     }
 
+
+//    @RequestMapping("/proxy")
+//    @ResponseBody
+//    public String proxy(@RequestBody String body, HttpMethod method, HttpServletRequest request, HttpServletResponse response) throws URISyntaxException {
+//        URI thirdPartyApi = new URI("http", null, "http://example.co", 8081, request.getRequestURI(), request.getQueryString(), null);
+//
+//        ResponseEntity<String> resp =
+//            restTemplate.exchange(thirdPartyApi, method, new HttpEntity<String>(body), String.class);
+//
+//        return resp.getBody();
+//    }
 }

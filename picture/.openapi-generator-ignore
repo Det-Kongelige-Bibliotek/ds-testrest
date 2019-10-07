@@ -21,8 +21,8 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
-/src/main/java/org/openapitools/api/FindPictureMetadataApi.java
-/src/main/java/org/openapitools/api/FindPictureMetadataApiController.java
-/src/main/java/dk/kb/picture/model/PictureMetadata.java
+#/src/main/java/org/openapitools/api/FindPictureMetadataApi.java
+#/src/main/java/org/openapitools/api/FindPictureMetadataApiController.java
+#/src/main/java/dk/kb/picture/model/PictureMetadata.java
 pom.xml
 README.md
